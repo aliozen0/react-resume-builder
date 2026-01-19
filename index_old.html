@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Özen - Resume</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- TEMEL AYARLAR --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Merriweather', 'Times New Roman', serif;
+            color: #000;
+            font-size: 10.5pt;
+            line-height: 1.35;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* İNDİRME BUTONU */
+        .download-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14pt;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            font-family: 'Merriweather', serif;
+        }
+
+        .download-btn:hover {
+            background-color: #1d4ed8;
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn i {
+            margin-right: 8px;
+        }
+
+        /* A4 KAĞIT YAPISI */
+        .page {
+            background-color: white;
+            width: 210mm;
+            max-width: 210mm;
+            min-height: 297mm;
+            padding: 1.5cm 2cm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- HEADER (İSİM VE İLETİŞİM) --- */
+        header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: 400;
+            margin: 0 0 8px 0;
+            padding: 0;
+        }
+
+        .contact-info {
+            font-size: 9.5pt;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 100%;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .separator {
+            color: #999;
+            font-weight: 300;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* --- BÖLÜM BAŞLIKLARI (ÇİZGİLİ OLANLAR) --- */
+        .section {
+            page-break-inside: avoid;
+            margin-bottom: 14px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 12pt;
+            font-weight: 700;
+            margin: 0;
+            padding-right: 12px;
+            white-space: nowrap;
+        }
+
+        .line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #000;
+            margin-top: 4px;
+        }
+
+        /* --- İÇERİK YAPISI --- */
+        .content {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .entry {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .entry-title {
+            font-weight: 700;
+            font-size: 10.5pt;
+        }
+
+        .entry-subtitle {
+            font-weight: 400;
+        }
+
+        .date {
+            font-weight: 400;
+            text-align: right;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* --- LİSTELER (BULLET POINTS) --- */
+        ul {
+            margin: 3px 0 6px 0;
+            padding-left: 18px;
+            list-style-type: disc;
+        }
+
+        li {
+            margin-bottom: 2px;
+            page-break-inside: avoid;
+        }
+
+        /* --- YETENEKLER BÖLÜMÜ --- */
+        .skill-item {
+            margin-bottom: 3px;
+        }
+        .skill-label {
+            font-weight: 700;
+        }
+
+        /* --- YAZDIRMA AYARLARI --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm 2cm;
+            }
+
+            body {
+                background-color: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                min-height: auto;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .entry {
+                page-break-inside: avoid;
+            }
+
+            h1 {
+                page-break-after: avoid;
+            }
+
+            .section-header {
+                page-break-after: avoid;
+            }
+
+            .download-btn {
+                display: none;
+            }
+            
+            body {
+                padding: 0 !important;
+            }
+            
+            .page {
+                margin: 0 !important;
+            }
+        }
+    </style>
+    <script>
+        function downloadPDF() {
+            // Tarayıcının kendi yazdırma dialogunu aç
+            window.print();
+        }
+    </script>
+</head>
+<body>
+
+    <button class="download-btn" onclick="downloadPDF()">
+        <i class="fas fa-download"></i>CV'yi PDF Olarak İndir
+    </button>
+
+    <div class="page">
+        <header>
+            <h1>Ali Özen</h1>
+            <div class="contact-info">
+                <span class="contact-item"><i class="far fa-envelope"></i> <a href="mailto:aliozen210@gmail.com">aliozen210@gmail.com</a></span>
+                <span class="separator">|</span>
+                <span class="contact-item"><i class="fas fa-phone"></i> +90 505 052 10 60</span>
+                <span class="separator">|</span>
+                <span class="contact-item"><i class="fas fa-map-marker-alt"></i> Ankara, Turkey</span>
+                <span class="separator">|</span>
+                <span class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/ozenali" target="_blank">linkedin.com/in/ozenali</a></span>
+                <span class="separator">|</span>
+                <span class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/aliozen0" target="_blank">github.com/aliozen0</a></span>
+            </div>
+        </header>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Professional Summary</div>
+                <div class="line"></div>
+            </div>
+            <div class="content">
+                Computer Engineering student with hands-on experience in AI and autonomous systems, seeking a Part-Time LLM Researcher or Engineer role. Specialized in LLMs, deep learning, computer vision, and simulation, leading award-winning teams and delivering impactful AI-powered solutions. Proficient in Python, Java, and experienced with TensorFlow, ROS, and Computer Vision technologies. Eager to contribute to software coding and design while learning the codebase and improving skills.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Experience</div>
+                <div class="line"></div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div><span class="entry-title">ProudSec,</span> <span class="entry-subtitle">AI Developer</span></div>
+                    <div class="date">Mar 2025 - Jan 2026</div>
+                </div>
+                <ul>
+                    <li>Designed and implemented RAG-based LLM chatbots to provide intelligent user assistance.</li>
+                    <li>Optimized AI agents for specific tasks, ensuring high accuracy and efficient performance.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Education</div>
+                <div class="line"></div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div><span class="entry-title">Gazi University,</span> BSc in Computer Engineering(4th Year Student) - Ankara, Türkiye</div>
+                    <div class="date">Sep 2021 - Present</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Courses</div>
+                <div class="line"></div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div><span class="entry-title">Digital Transformation Office of the Presidency of Türkiye,</span> AI Talent Program (140 Hours)</div>
+                    <div class="date">Jul 2024 - Sep 2024</div>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="entry-header">
+                    <div><span class="entry-title">Coursera,</span> Neural Networks and Deep Learning</div>
+                    <div class="date">Jan 2023 - Jan 2023</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Skills</div>
+                <div class="line"></div>
+            </div>
+            <div class="skill-item"><span class="skill-label">Programming Languages:</span> Python, Java, Basic Programming</div>
+            <div class="skill-item"><span class="skill-label">Computer Vision & Image Processing:</span> YOLO, OpenCV, Computer Vision, Image Recognition</div>
+            <div class="skill-item"><span class="skill-label">AI and Machine Learning:</span> LLM, RAG, Deep Learning, TensorFlow, PyTorch, Neural Networks, Natural Language Processing, LangChain, Federated Learning, Reinforcement Learning</div>
+            <div class="skill-item"><span class="skill-label">Robotics and Simulation:</span> ROS (Robot Operating System), Gazebo Simulation, Autonomous Systems</div>
+            <div class="skill-item"><span class="skill-label">Development Tools:</span> Git, Linux, Docker</div>
+            <div class="skill-item"><span class="skill-label">Leadership and Management:</span> Team Leadership, Project Management, Cross-functional Collaboration, Agile Methodologies</div>
+            <div class="skill-item"><span class="skill-label">Soft Skills:</span> Problem-solving, Detail-oriented, Enthusiastic, Self-motivated, Able to follow instructions</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Languages</div>
+                <div class="line"></div>
+            </div>
+            <div><span class="skill-label">Turkish</span> (Native speaker), <span class="skill-label">English</span> </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Achievements</div>
+                <div class="line"></div>
+            </div>
+            <ul>
+                <li>Finalist, TEKNOFEST Robotaxi (2024 & 2025) </li>
+                <li>Winner, University4Society (2024) – Led AI-based innovation project(ODTÜ)</li>
+                <li>Top 5 in Turkey, Top 900 Globally – IEEE Xtreme 17.0 & 18.0 Algorithm Competitions, solving 20+ complex problems in 24 hours</li>
+                <li>2nd Place, Turkey AI Awards (2024) – Most Innovative AI Application</li>
+                <li>3rd Place, Y³ KANGAL Challenge (2023) – AI for Autonomous Systems (SSB & HAVELSAN)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Leadership & Community Involvement</div>
+                <div class="line"></div>
+            </div>
+            <ul>
+                <li>Team Captain, HÜMA Rover – TEKNOFEST (2024–2025) – Managed team of 15+ members, coordinated project timelines and technical implementation</li>
+                <li>Vice President & Executive Board Member, IEEE Gazi Student Branch (2023–2025) – Organized 10+ technical workshops with 700+ attendees</li>
+                <li>Project Coordinator, IEEE Computer Society Turkey Student Section (2024) </li>
+                <li>Mentor, Global AI Hub – Artificial Intelligence & Python (2024) </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

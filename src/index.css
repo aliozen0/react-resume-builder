@@ -1,0 +1,254 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+
+/* --- TEMEL AYARLAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    font-family: 'Merriweather', 'Times New Roman', serif;
+    color: #000;
+    font-size: 10.5pt;
+    line-height: 1.35;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Kök element ayarları (React için) */
+#root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* İNDİRME BUTONU (React Component tarafından kullanılacak, ama global stil olarak kalabilir) */
+.download-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14pt;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    font-family: 'Merriweather', serif;
+}
+
+.download-btn:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn i {
+    margin-right: 8px;
+}
+
+/* A4 KAĞIT YAPISI */
+.page {
+    background-color: white;
+    width: 210mm;
+    max-width: 210mm;
+    min-height: 297mm;
+    padding: 1.5cm 2cm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- HEADER (İSİM VE İLETİŞİM) --- */
+header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 28pt;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+.contact-info {
+    font-size: 9.5pt;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.separator {
+    color: #999;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* --- BÖLÜM BAŞLIKLARI (ÇİZGİLİ OLANLAR) --- */
+.section {
+    page-break-inside: avoid;
+    margin-bottom: 14px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-size: 12pt;
+    font-weight: 700;
+    margin: 0;
+    padding-right: 12px;
+    white-space: nowrap;
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #000;
+    margin-top: 4px;
+}
+
+/* --- İÇERİK YAPISI --- */
+.content {
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+.entry {
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.entry-title {
+    font-weight: 700;
+    font-size: 10.5pt;
+}
+
+.entry-subtitle {
+    font-weight: 400;
+}
+
+.date {
+    font-weight: 400;
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* --- LİSTELER (BULLET POINTS) --- */
+ul {
+    margin: 3px 0 6px 0;
+    padding-left: 18px;
+    list-style-type: disc;
+}
+
+li {
+    margin-bottom: 2px;
+    page-break-inside: avoid;
+}
+
+/* --- YETENEKLER BÖLÜMÜ --- */
+.skill-item {
+    margin-bottom: 3px;
+}
+.skill-label {
+    font-weight: 700;
+}
+
+/* --- EDİTÖR İÇİN EK STİLLER (Sonradan eklenecekler buraya) --- */
+/* Print önizleme modu vs için gerekirse burayı güncelleyeceğiz */
+
+/* --- YAZDIRMA AYARLARI --- */
+@media print {
+    @page {
+        size: A4;
+        margin: 1.5cm 2cm;
+    }
+
+    body {
+        background-color: white;
+        padding: 0;
+        margin: 0;
+    }
+
+    #root {
+        display: block; /* Flex'i iptal et */
+        width: 100%;
+    }
+
+    .page {
+        box-shadow: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        min-height: auto;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+
+    .entry {
+        page-break-inside: avoid;
+    }
+
+    h1 {
+        page-break-after: avoid;
+    }
+
+    .section-header {
+        page-break-after: avoid;
+    }
+
+    .download-btn, .editor-panel {
+        display: none !important;
+    }
+    
+    body {
+        padding: 0 !important;
+    }
+    
+    .page {
+        margin: 0 !important;
+    }
+}
