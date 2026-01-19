@@ -2,68 +2,242 @@
 .app-container {
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
 }
 
+/* --- THEME VARIABLES --- */
+:root {
+  --editor-bg: #0f172a;
+  --editor-card: #1e293b;
+  --editor-text: #f8fafc;
+  --editor-border: #334155;
+  --editor-input: #020617;
+  --workspace-bg: #e2e8f0;
+  --workspace-dot: #cbd5e1;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+}
+
+[data-theme='light'] {
+  --editor-bg: #f8fafc;
+  --editor-card: #ffffff;
+  --editor-text: #0f172a;
+  --editor-border: #e2e8f0;
+  --editor-input: #ffffff;
+  --workspace-bg: #f1f5f9;
+  --workspace-dot: #cbd5e1;
+}
+
+/* --- Editor Pane (Left) --- */
 .editor-pane {
-  width: 400px;
   flex-shrink: 0;
   height: 100vh;
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  /* EditorPanel handles its own scroll */
-  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  border-right: 1px solid var(--editor-border);
+  background-color: var(--editor-bg);
+  z-index: 10;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
+/* --- Resizer Handle --- */
+.resizer {
+  width: 8px;
+  cursor: col-resize;
+  background-color: var(--editor-bg);
+  border-right: 1px solid var(--editor-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: all 0.3s;
+}
+
+.resizer:hover,
+.resizer:active {
+  background-color: var(--accent);
+}
+
+.resizer-line {
+  width: 2px;
+  height: 20px;
+  background-color: var(--editor-border);
+  border-radius: 2px;
+}
+
+.resizer:hover .resizer-line {
+  background-color: white;
+}
+
+
+/* --- Main Preview Pane (Right - Workspace) --- */
 .main-pane {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #555;
-  /* Dark background for preview area to make A4 pop */
-  min-height: 100vh;
+  justify-content: flex-start;
+  padding: 60px 40px;
+  background-color: var(--workspace-bg);
+  background-image: radial-gradient(var(--workspace-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+  transition: background-color 0.3s;
 }
 
-/* Responsive for smaller screens (not print) */
+/* --- Scale Wrapper --- */
+.preview-wrapper {
+  transform-origin: top center;
+  margin-bottom: 80px;
+  transition: transform 0.1s ease-out;
+  background: white;
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Workspace Controls (Zoom & Theme) --- */
+.workspace-controls {
+  position: fixed;
+  top: 24px;
+  right: 40px;
+  background: var(--editor-card);
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: var(--editor-text);
+  font-weight: 600;
+  border: 1px solid var(--editor-border);
+}
+
+.workspace-controls button {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--editor-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.workspace-controls button:hover {
+  background: rgba(125, 125, 125, 0.15);
+  color: var(--accent);
+}
+
+.divider-v {
+  width: 1px;
+  height: 16px;
+  background-color: var(--editor-border);
+  margin: 0 4px;
+}
+
+.zoom-label {
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- PDF Download Button Floating Action --- */
+.download-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Inter', sans-serif;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.download-btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.5);
+}
+
+/* Responsive */
 @media screen and (max-width: 900px) {
   .app-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    height: auto;
+    overflow: auto;
   }
 
   .editor-pane {
-    width: 100%;
+    width: 100% !important;
     height: auto;
-    position: relative;
     border-right: none;
-    border-bottom: 1px solid #ddd;
+  }
+
+  .resizer,
+  .workspace-controls {
+    display: none;
+  }
+
+  .main-pane {
+    height: auto;
+    padding: 20px;
+  }
+
+  .preview-wrapper {
+    transform: scale(0.6) !important;
+    transform-origin: top left;
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
 
-/* CLEAR PRINT STYLES */
+/* --- PRINT STYLES --- */
 @media print {
   .app-container {
     display: block !important;
-    /* Remove flex */
     height: auto !important;
     overflow: visible !important;
+    background: white !important;
   }
 
-  .editor-pane {
+  .editor-pane,
+  .download-btn,
+  .resizer,
+  .workspace-controls {
     display: none !important;
   }
 
   .main-pane {
     padding: 0 !important;
-    background-color: white !important;
+    background: white !important;
     display: block !important;
-    width: 100% !important;
     height: auto !important;
+    overflow: visible !important;
   }
 
-  .download-btn {
-    display: none !important;
+  .preview-wrapper {
+    transform: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
   }
 }

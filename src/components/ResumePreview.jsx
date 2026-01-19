@@ -3,33 +3,52 @@ import React from 'react';
 const ResumePreview = ({ data }) => {
     const { personalInfo, sections } = data;
 
+    // Helper to build contact items array
+    const contactItems = [
+        {
+            condition: personalInfo.email,
+            icon: "far fa-envelope",
+            content: <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+        },
+        {
+            condition: personalInfo.phone,
+            icon: "fas fa-phone",
+            content: personalInfo.phone
+        },
+        {
+            condition: personalInfo.location,
+            icon: "fas fa-map-marker-alt",
+            content: personalInfo.location
+        },
+        {
+            condition: personalInfo.linkedin,
+            icon: "fab fa-linkedin",
+            content: <a href={personalInfo.linkedinUrl || '#'} target="_blank" rel="noreferrer">{personalInfo.linkedin}</a>
+        },
+        {
+            condition: personalInfo.github,
+            icon: "fab fa-github",
+            content: <a href={personalInfo.githubUrl || '#'} target="_blank" rel="noreferrer">{personalInfo.github}</a>
+        }
+    ].filter(item => item.condition); // Only keep items with data
+
     return (
         <div className="page" id="resume-preview">
             <header>
                 <h1>{personalInfo.fullName}</h1>
+                {personalInfo.title && <p className="job-title">{personalInfo.title}</p>}
                 <div className="contact-info">
-                    <span className="contact-item">
-                        <i className="far fa-envelope"></i>
-                        <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
-                    </span>
-                    <span className="separator">|</span>
-                    <span className="contact-item">
-                        <i className="fas fa-phone"></i> {personalInfo.phone}
-                    </span>
-                    <span className="separator">|</span>
-                    <span className="contact-item">
-                        <i className="fas fa-map-marker-alt"></i> {personalInfo.location}
-                    </span>
-                    <span className="separator">|</span>
-                    <span className="contact-item">
-                        <i className="fab fa-linkedin"></i>
-                        <a href={personalInfo.linkedinUrl} target="_blank" rel="noreferrer">{personalInfo.linkedin}</a>
-                    </span>
-                    <span className="separator">|</span>
-                    <span className="contact-item">
-                        <i className="fab fa-github"></i>
-                        <a href={personalInfo.githubUrl} target="_blank" rel="noreferrer">{personalInfo.github}</a>
-                    </span>
+                    {contactItems.map((item, index) => (
+                        <React.Fragment key={index}>
+                            <span className="contact-item">
+                                <i className={item.icon}></i> {item.content}
+                            </span>
+                            {/* Add separator if it's not the last item */}
+                            {index < contactItems.length - 1 && (
+                                <span className="separator">|</span>
+                            )}
+                        </React.Fragment>
+                    ))}
                 </div>
             </header>
 
@@ -56,7 +75,7 @@ const ResumePreview = ({ data }) => {
                                 </div>
                                 {entry.date && <div className="date">{entry.date}</div>}
                             </div>
-                            {entry.description && (
+                            {entry.description && entry.description.length > 0 && (
                                 <ul>
                                     {entry.description.map((desc, i) => <li key={i}>{desc}</li>)}
                                 </ul>
@@ -64,11 +83,25 @@ const ResumePreview = ({ data }) => {
                         </div>
                     ))}
 
-                    {section.type === 'skills' && section.list.map((skill, index) => (
-                        <div key={index} className="skill-item">
-                            <span className="skill-label">{skill.label}:</span> {skill.value}
-                        </div>
-                    ))}
+                    {section.type === 'skills' && (
+                        section.id === 'languages' ? (
+                            <div className="languages-inline">
+                                {section.list.map((skill, index) => (
+                                    <span key={index} className="language-item">
+                                        <span className="skill-label">{skill.label}</span>
+                                        {skill.value && <span className="skill-value"> ({skill.value})</span>}
+                                        {index < section.list.length - 1 && <span className="separator">, </span>}
+                                    </span>
+                                ))}
+                            </div>
+                        ) : (
+                            section.list.map((skill, index) => (
+                                <div key={index} className="skill-item">
+                                    <span className="skill-label">{skill.label}:</span> {skill.value}
+                                </div>
+                            ))
+                        )
+                    )}
 
                     {section.type === 'list' && (
                         <ul>

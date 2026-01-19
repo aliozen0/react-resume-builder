@@ -41,14 +41,14 @@ body {
     border-radius: 8px;
     cursor: pointer;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     font-family: 'Merriweather', serif;
 }
 
 .download-btn:hover {
     background-color: #1d4ed8;
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
@@ -62,14 +62,39 @@ body {
 
 /* A4 KAĞIT YAPISI */
 .page {
-    background-color: white;
+    background-color: white !important;
+    color: #000000 !important;
     width: 210mm;
     max-width: 210mm;
     min-height: 297mm;
     padding: 1.5cm 2cm;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+}
+
+/* Force purely black text inside the CV, ignoring parent theme colors */
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6,
+.page p,
+.page span,
+.page div,
+.page li {
+    color: #000000 !important;
+}
+
+/* Keep links blue or black as intended, but don't let them go white in dark mode */
+.page a {
+    color: #2563eb !important;
+    /* Standard link blue */
+}
+
+.page a:visited {
+    color: #2563eb !important;
 }
 
 /* --- HEADER (İSİM VE İLETİŞİM) --- */
@@ -153,10 +178,12 @@ a {
 .entry-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
+    /* Better alignment for multi-line titles */
     margin-bottom: 3px;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 16px;
+    /* Increased gap */
+    /* Removed flex-wrap to force same line */
 }
 
 .entry-title {
@@ -191,6 +218,7 @@ li {
 .skill-item {
     margin-bottom: 3px;
 }
+
 .skill-label {
     font-weight: 700;
 }
@@ -212,7 +240,8 @@ li {
     }
 
     #root {
-        display: block; /* Flex'i iptal et */
+        display: block;
+        /* Flex'i iptal et */
         width: 100%;
     }
 
@@ -240,14 +269,46 @@ li {
         page-break-after: avoid;
     }
 
-    .download-btn, .editor-panel {
+    .download-btn,
+    .editor-panel {
         display: none !important;
     }
-    
+
     body {
         padding: 0 !important;
+
+        .page {
+            margin: 0 !important;
+        }
     }
-    
+
+    .job-title {
+        font-size: 1.1rem;
+        color: #555;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    /* --- Language Section Inline Style --- */
+    .languages-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .language-item {
+        white-space: pre-wrap;
+    }
+
+    .language-item .skill-label {
+        font-weight: 700;
+    }
+
+    .language-item .skill-value {
+        font-weight: 400;
+    }
+
     .page {
         margin: 0 !important;
     }
