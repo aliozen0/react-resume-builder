@@ -147,6 +147,7 @@ a {
     align-items: center;
     margin-top: 14px;
     margin-bottom: 8px;
+    background-color: transparent !important;
 }
 
 .section-title {
@@ -227,6 +228,34 @@ li {
 /* Print önizleme modu vs için gerekirse burayı güncelleyeceğiz */
 
 /* --- YAZDIRMA AYARLARI --- */
+.job-title {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* --- Language Section Inline Style --- */
+.languages-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.language-item {
+    white-space: pre-wrap;
+}
+
+.language-item .skill-label {
+    font-weight: 700;
+}
+
+.language-item .skill-value {
+    font-weight: 400;
+}
+
+/* --- YAZDIRMA AYARLARI --- */
 @media print {
     @page {
         size: A4;
@@ -241,8 +270,13 @@ li {
 
     #root {
         display: block;
-        /* Flex'i iptal et */
         width: 100%;
+    }
+
+    .app-container {
+        display: block;
+        height: auto;
+        overflow: visible;
     }
 
     .page {
@@ -251,65 +285,30 @@ li {
         padding: 0;
         margin: 0;
         min-height: auto;
+        background-color: white !important;
+        color: black !important;
     }
 
-    .section {
+    .section,
+    .entry,
+    h1,
+    .section-header {
         page-break-inside: avoid;
-    }
-
-    .entry {
-        page-break-inside: avoid;
-    }
-
-    h1 {
-        page-break-after: avoid;
     }
 
     .section-header {
         page-break-after: avoid;
     }
 
+    h1 {
+        page-break-after: avoid;
+    }
+
     .download-btn,
-    .editor-panel {
+    .editor-pane,
+    .resizer,
+    .workspace-controls,
+    .add-section-dock {
         display: none !important;
-    }
-
-    body {
-        padding: 0 !important;
-
-        .page {
-            margin: 0 !important;
-        }
-    }
-
-    .job-title {
-        font-size: 1.1rem;
-        color: #555;
-        margin-top: 5px;
-        margin-bottom: 20px;
-        font-weight: 500;
-    }
-
-    /* --- Language Section Inline Style --- */
-    .languages-inline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
-    }
-
-    .language-item {
-        white-space: pre-wrap;
-    }
-
-    .language-item .skill-label {
-        font-weight: 700;
-    }
-
-    .language-item .skill-value {
-        font-weight: 400;
-    }
-
-    .page {
-        margin: 0 !important;
     }
 }
