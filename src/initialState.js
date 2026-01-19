@@ -1,20 +1,20 @@
 export const initialResumeState = {
   personalInfo: {
-    fullName: "Ali Özen",
-    email: "aliozen210@gmail.com",
-    phone: "+90 505 052 10 60",
-    location: "Ankara, Turkey",
-    linkedin: "linkedin.com/in/ozenali",
-    linkedinUrl: "https://linkedin.com/in/ozenali",
-    github: "github.com/aliozen0",
-    githubUrl: "https://github.com/aliozen0"
+    fullName: "John Doe",
+    email: "john.doe@example.com",
+    phone: "+1 234 567 8900",
+    location: "New York, USA",
+    linkedin: "linkedin.com/in/johndoe",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    github: "github.com/johndoe",
+    githubUrl: "https://github.com/johndoe"
   },
   sections: [
     {
       id: "summary",
       title: "Professional Summary",
       type: "text",
-      content: "Computer Engineering student with hands-on experience in AI and autonomous systems, seeking a Part-Time LLM Researcher or Engineer role. Specialized in LLMs, deep learning, computer vision, and simulation, leading award-winning teams and delivering impactful AI-powered solutions. Proficient in Python, Java, and experienced with TensorFlow, ROS, and Computer Vision technologies. Eager to contribute to software coding and design while learning the codebase and improving skills."
+      content: "Experienced Software Engineer with a strong background in developing scalable web applications and working with modern technologies. Proven track record of delivering high-quality code and collaborating effectively in cross-functional teams. Passionate about problem-solving and continuous learning."
     },
     {
       id: "experience",
@@ -23,12 +23,22 @@ export const initialResumeState = {
       entries: [
         {
           id: 1,
-          title: "ProudSec",
-          subtitle: "AI Developer",
-          date: "Mar 2025 - Jan 2026",
+          title: "Tech Solutions Inc.",
+          subtitle: "Senior Software Engineer",
+          date: "Jan 2020 - Present",
           description: [
-            "Designed and implemented RAG-based LLM chatbots to provide intelligent user assistance.",
-            "Optimized AI agents for specific tasks, ensuring high accuracy and efficient performance."
+            "Led the development of a flagship e-commerce platform, increasing user engagement by 30%.",
+            "Mentored junior developers and conducted code reviews to ensure code quality."
+          ]
+        },
+        {
+          id: 2,
+          title: "WebCorp",
+          subtitle: "Software Developer",
+          date: "Jun 2017 - Dec 2019",
+          description: [
+            "Developed and maintained various client websites using React and Node.js.",
+            "Collaborated with designers to implement responsive user interfaces."
           ]
         }
       ]
@@ -40,28 +50,9 @@ export const initialResumeState = {
       entries: [
         {
           id: 1,
-          title: "Gazi University",
-          subtitle: "BSc in Computer Engineering(4th Year Student) - Ankara, Türkiye",
-          date: "Sep 2021 - Present"
-        }
-      ]
-    },
-    {
-      id: "courses",
-      title: "Courses",
-      type: "entries",
-      entries: [
-        {
-          id: 1,
-          title: "Digital Transformation Office of the Presidency of Türkiye",
-          subtitle: "AI Talent Program (140 Hours)",
-          date: "Jul 2024 - Sep 2024"
-        },
-        {
-          id: 2,
-          title: "Coursera",
-          subtitle: "Neural Networks and Deep Learning",
-          date: "Jan 2023 - Jan 2023"
+          title: "University of Technology",
+          subtitle: "B.Sc. in Computer Science",
+          date: "Sep 2013 - May 2017"
         }
       ]
     },
@@ -70,13 +61,9 @@ export const initialResumeState = {
       title: "Skills",
       type: "skills",
       list: [
-        { label: "Programming Languages", value: "Python, Java, Basic Programming" },
-        { label: "Computer Vision & Image Processing", value: "YOLO, OpenCV, Computer Vision, Image Recognition" },
-        { label: "AI and Machine Learning", value: "LLM, RAG, Deep Learning, TensorFlow, PyTorch, Neural Networks, Natural Language Processing, LangChain, Federated Learning, Reinforcement Learning" },
-        { label: "Robotics and Simulation", value: "ROS (Robot Operating System), Gazebo Simulation, Autonomous Systems" },
-        { label: "Development Tools", value: "Git, Linux, Docker" },
-        { label: "Leadership and Management", value: "Team Leadership, Project Management, Cross-functional Collaboration, Agile Methodologies" },
-        { label: "Soft Skills", value: "Problem-solving, Detail-oriented, Enthusiastic, Self-motivated, Able to follow instructions" }
+        { label: "Programming Languages", value: "JavaScript, Python, Java, C++" },
+        { label: "Web Technologies", value: "React, Node.js, HTML, CSS, TypeScript" },
+        { label: "Tools & Platforms", value: "Git, Docker, AWS, Linux" }
       ]
     },
     {
@@ -84,8 +71,8 @@ export const initialResumeState = {
       title: "Languages",
       type: "skills",
       list: [
-        { label: "Turkish", value: "Native speaker" },
-        { label: "English", value: "Advanced" }
+        { label: "English", value: "Native" },
+        { label: "Spanish", value: "Intermediate" }
       ]
     },
     {
@@ -93,22 +80,8 @@ export const initialResumeState = {
       title: "Achievements",
       type: "list",
       items: [
-        "Finalist, TEKNOFEST Robotaxi (2024 & 2025)",
-        "Winner, University4Society (2024) – Led AI-based innovation project(ODTÜ)",
-        "Top 5 in Turkey, Top 900 Globally – IEEE Xtreme 17.0 & 18.0 Algorithm Competitions, solving 20+ complex problems in 24 hours",
-        "2nd Place, Turkey AI Awards (2024) – Most Innovative AI Application",
-        "3rd Place, Y³ KANGAL Challenge (2023) – AI for Autonomous Systems (SSB & HAVELSAN)"
-      ]
-    },
-    {
-      id: "leadership",
-      title: "Leadership & Community Involvement",
-      type: "list",
-      items: [
-        "Team Captain, HÜMA Rover – TEKNOFEST (2024–2025) – Managed team of 15+ members, coordinated project timelines and technical implementation",
-        "Vice President & Executive Board Member, IEEE Gazi Student Branch (2023–2025) – Organized 10+ technical workshops with 700+ attendees",
-        "Project Coordinator, IEEE Computer Society Turkey Student Section (2024)",
-        "Mentor, Global AI Hub – Artificial Intelligence & Python (2024)"
+        "Employee of the Month (Tech Solutions Inc., 2021)",
+        "Winner of the 2019 Internal Hackathon"
       ]
     }
   ]
