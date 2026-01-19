@@ -9,8 +9,8 @@ function App() {
   const [resumeData, setResumeData] = useState(initialResumeState);
 
   // Layout State
-  const [sidebarWidth, setSidebarWidth] = useState(450);
-  const [zoomLevel, setZoomLevel] = useState(0.8);
+  const [sidebarWidth, setSidebarWidth] = useState(550); // Wider editor by default
+  const [zoomLevel, setZoomLevel] = useState(0.65); // Smaller preview by default
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef(null);
 
